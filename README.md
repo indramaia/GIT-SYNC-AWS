@@ -1,8 +1,7 @@
 # itau
 itau_case
-#1 
 
-GIT-SYNC
+## GIT-SYNC
 Apliacado a RHEL/Centos
 
 Realize a sincronização do github com o servidor na nuvem
