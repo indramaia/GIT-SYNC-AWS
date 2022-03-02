@@ -1,0 +1,41 @@
+#!/bin/bash
+
+yum update -y
+clear
+echo
+echo "SO ATUALIZADO"
+sleep 3
+
+yum install git -y
+clear
+echo
+echo "GIT INSTALADO"
+sleep 3
+
+echo
+echo "CONFIGURANDO USUARIO E EMAIL"
+echo
+read -p "Usuario: " user; echo
+git config --global user.name "$user"
+
+echo
+read -p "Email: " email; echo
+git config --global user.email "$email"
+clear
+
+echo
+echo "CONFIGURACOES DE USUARIO E EMAIL"
+echo
+cat /root/.gitconfig
+sleep 5
+
+clear
+echo
+echo "FINALIZANDO INSTALACAO"
+sleep 4
+
+clear
+echo
+echo "GIT INSTALADO E CONFIGURADO"
+echo; echo
+sleep 2
