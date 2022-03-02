@@ -1,0 +1,67 @@
+#!/bin/bash
+
+clear
+echo
+echo "ADICIONE O ENDERECO PARA REPOSITORIO LOCAL"
+echo "Ex: /storage"; echo
+read -p "Endereco: " addr; echo
+
+mkdir $addr
+sleep 2
+cd $addr
+
+clear
+echo "CLONANDO O REPOSITORIO"
+echo "Ex: https://github.com/USER/repositorio"; echo
+read -p "URL: " url; echo
+
+git clone $url
+sleep 3
+
+clear
+git status
+git commit -m "CRIADO REPOSITORIO"
+ls -la $addr
+
+sleep 1
+
+#########################################################
+
+clear
+echo
+echo "CRIANDO ARQUIVO DE ATUALIZACAO PARA DOWNLOD"
+echo "Este arquivo fara o download dos aquivos do Git,"
+echo "para o repositorio local, que foi definido neste momento"
+
+echo; echo
+echo "DIGITE O NOME PARA O ARQUIVO DE REPLICACAO (GIT -> SERVIDOR)"
+echo "Ex: down-git-bucket"; echo
+read -p "Nome do arquivo: " nameexec; echo
+
+mkdir /root/scripts-down-git
+cd /root/scripts-down-git
+touch $nameexec
+cd /root/scripts-down-git
+
+ls -l /
+
+echo; echo
+echo "DIGITE O LOCAL DO REPOSITORIO LOCAL BASEADO NA LISTA ACIMA"
+echo "Ex: /storage/REPOSITORIO"; echo
+read -p "Nome do local: " namereposit; echo
+
+echo "#!/bin/bash" >> $nameexec
+echo " " >> $nameexec
+echo "cd $namereposit" >> $nameexec
+echo "git pull" >> $nameexec
+echo "git status" >> $nameexec
+echo 'git commit -m "Adicionado ao repositorio local"' >> $nameexec
+echo "clear" >> $nameexec
+echo "ls -la $namereposit" >> $nameexec
+cd /root/scripts-down-git
+chmod 777 $nameexec
+
+clear
+echo "ABAIXO SEGUE O ARQUIVO $nameexec CRIADO E SEU CONTEUDO"
+cat /root/scripts-down-git/$nameexec
+echo; ls -l /root/scripts-down-git/$nameexec
