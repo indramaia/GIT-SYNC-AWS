@@ -1,0 +1,71 @@
+#!/bin/bash
+
+echo
+echo "ACESSE O SEU REPOSITORIO LOCAL"
+echo "Ex: /storage/repositorio"; echo
+read -p "Reposiotorio local: " repo; echo
+
+cd $repo
+ls
+
+git add *
+git commit -m "Adicionado dados"
+git status
+
+clear
+echo
+echo "ADICIONE O TOKEN DO GIT E O REPOSITORIO"
+echo
+read -p "Token: " token; echo
+echo
+echo "Ex: https://github.com/user/repositorio"
+echo "    Sera inserido apenas /user/repositorio"; echo
+read -p "user/repositorio: " repositorio; echo
+echo
+git remote set-url origin https://$token@github.com$repositorio
+
+git config --global push.default matching
+git config --global push.default simple
+git push
+git commit -m "Adicionado dados"
+clear
+
+echo "SUBINDO NO GIT NOVOS DADOS"
+sleep 3
+
+#####################################################################
+
+clear; echo
+echo "CRIANDO ARQUIVO DE ATUALIZACAO"
+echo "Este arquivo fara o upload dos aquivos do servidor,"
+echo "para o repositorio do GIT, que foi definido neste momento"
+
+echo; echo
+echo "DIGITE O NOME PARA O ARQUIVO DE REPLICACAO (SERVIDOR -> GIT)"
+echo "Ex: update-git-bucket"; echo
+read -p "Nome do arquivo: " nameup; echo
+
+mkdir /root/scripts-up-git
+cd /root/scripts-up-git
+touch $nameup
+cd /root/scripts-up-git
+
+echo "#!/bin/bash" >> $nameup
+echo " " >> $nameup
+echo "cd $repo" >> $nameup
+echo "git add *" >> $nameup
+echo 'git commit -m "Adicionado dados"' >> $nameup
+echo "git status" >> $nameup
+echo "git remote set-url origin https://$token@github.com$repositorio" >> $nameup
+echo "git config --global push.default matching" >> $nameup
+echo "git config --global push.default simple" >> $nameup
+echo "git push" >> $nameup
+echo 'git commit -m "Adicionado dados"'>> $nameup
+echo "clear" >> $nameup
+cd /root/scripts-up-git/
+chmod 777 $nameup
+
+clear
+echo "ABAIXO SEGUE O ARQUIVO $$nameup CRIADO E SEU CONTEUDO"
+ls -la /root/scripts-up-git/$nameup; echo
+cat /root/scripts-up-git/$nameup
