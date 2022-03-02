@@ -8,9 +8,9 @@ Realize a sincronização do github com o servidor na nuvem
 
 Savar em /root :
 
-install-git
-Config-repo-local-git
-Upload-file-git
+* install-git
+* Config-repo-local-git
+* Upload-file-git
 
 1 - Instalar o install-git com /root/install-git
 
