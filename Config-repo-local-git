@@ -2,11 +2,21 @@
 
 clear
 echo
-echo "ADICIONE O ENDERECO PARA REPOSITORIO LOCAL"
-echo "Ex: /storage"; echo
+
+echo "ADICIONE O ENDERECO PARA O REPOSITORIO LOCAL, BASEADO NA LISTA ABAIXO:"; echo
+ls -la /
+echo; echo "Ex: /storage"; echo
 read -p "Endereco: " addr; echo
 
+if [ ! -e "$addr" ]; then
+
 mkdir $addr
+
+   else
+echo
+
+fi
+
 sleep 2
 cd $addr
 
