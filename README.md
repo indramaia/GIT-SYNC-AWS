@@ -1,6 +1,3 @@
-# itau
-itau_case
-
 ## GIT-SYNC
 Apliacado a RHEL/Centos
 
